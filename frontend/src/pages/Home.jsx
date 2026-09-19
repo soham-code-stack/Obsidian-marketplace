@@ -307,6 +307,7 @@ export default function Home() {
 
           {/* Right: Floating Glass Spotlight */}
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+            {!loading && (
             <div
               className="glass-floating"
               style={{
@@ -413,6 +414,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
@@ -580,6 +582,7 @@ export default function Home() {
             </div>
 
             {/* Featured Flash Item */}
+            {!loading && (
             <div
               style={{
                 display: 'flex',
@@ -630,6 +633,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
