@@ -1,4 +1,4 @@
-# Multi-Vendor Marketplace
+# Obsidian Marketplace
 
 A full-stack multi-vendor ecommerce marketplace built to demonstrate real-world engineering depth: JWT auth with token rotation, concurrency-safe inventory management, Meilisearch product search, Stripe payments, and content-based recommendations.
 
