@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.8
+    ports:
+      - '7700:7700'
+    environment:
+      - MEILI_MASTER_KEY=dev_master_key_change_me
+      - MEILI_ENV=development
+    volumes:
+      - meili_data:/meili_data
+
+volumes:
+  meili_data:
