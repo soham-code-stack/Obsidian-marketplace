@@ -80,5 +80,8 @@ productSchema.virtual('inStock').get(function getInStock() {
 productSchema.set('toJSON', { virtuals: true });
 productSchema.set('toObject', { virtuals: true });
 
-module.exports = mongoose.model('Product', productSchema);
+// Text index for MongoDB-native search (used in production as a fallback
+// to Meilisearch, which is only run locally via Docker in development).
+productSchema.index({ name: 'text', description: 'text', category: 'text', tags: 'text' });
 
+module.exports = mongoose.model('Product', productSchema);
