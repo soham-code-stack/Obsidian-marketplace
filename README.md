@@ -246,11 +246,3 @@ Use [Meilisearch Cloud](https://www.meilisearch.com/cloud) (has a free tier) or 
 
 ### Payments → Stripe
 Stay in test mode for a portfolio project — no need to activate live payments unless you want to accept real money.
-
-## 11. Key Engineering Highlights (for your CV / interview talking points)
-
-- **Concurrency-safe inventory** (`backend/src/services/inventory.js`): uses atomic, conditional MongoDB updates (`findOneAndUpdate` with a `stock >= quantity` filter) instead of read-then-write, preventing overselling when multiple buyers check out simultaneously. Multi-item orders use a compensating-transaction pattern to roll back partial stock reservations if any item fails.
-- **Payment-confirmed stock decrement**: stock is never reserved at "checkout click" — only once Stripe's webhook confirms `payment_intent.succeeded`, so abandoned carts never lock up inventory.
-- **JWT refresh token rotation**: each refresh issues a new token and invalidates the old one; reuse of a stale token wipes all sessions for that user (basic theft detection).
-- **Content-based recommendations** (`backend/src/services/recommendation.js`): category/tag-overlap scoring for "similar products" and purchase-history-based "for you" feeds — no ML infra required, but demonstrates recommendation-system thinking.
-- **Search sync service**: keeps Meilisearch in sync with MongoDB writes without making search availability a hard dependency for core CRUD operations (search failures are logged, not thrown).
